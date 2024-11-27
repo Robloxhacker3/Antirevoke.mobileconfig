@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>PayloadContent</key>
+        <array>
+            <!-- VPN/Proxy Setup to Fake Desktop Mode -->
+            <dict>
+                <key>PayloadType</key>
+                <string>com.apple.networkextension</string>
+                <key>PayloadIdentifier</key>
+                <string>com.example.fakePCmode</string>
+                <key>PayloadDisplayName</key>
+                <string>Fake PC Mode (Desktop Safari)</string>
+                <key>PayloadDescription</key>
+                <string>Modify Safari's User-Agent to make it always think it's a desktop PC, and block mobile websites & ads.</string>
+                <key>VPN</key>
+                <dict>
+                    <key>VPNType</key>
+                    <string>IPSec</string>
+                    <key>Server</key>
+                    <string>vpn.example.com</string>
+                    <key>Account</key>
+                    <string>user</string>
+                    <key>Password</key>
+                    <string>password</string>
+                    <!-- Proxy setup -->
+                    <key>Proxy</key>
+                    <dict>
+                        <key>Type</key>
+                        <string>Manual</string>
+                        <key>Server</key>
+                        <string>proxy.example.com</string>
+                        <key>Port</key>
+                        <integer>8080</integer>
+                        <key>Authentication</key>
+                        <string>None</string>
+                    </dict>
+                </dict>
+            </dict>
+
+            <!-- DNS Settings to Block Apple & Ads Related Sites -->
+            <dict>
+                <key>DNSSettings</key>
+                <dict>
+                    <key>DNSProtocol</key>
+                    <string>HTTPS</string>
+                    <key>ServerURL</key>
+                    <string>https://apple.dns.nextdns.io/aff4ad</string>
+                    <key>MatchDomains</key>
+                    <array>
+                        <!-- Block Apple Certificate Validation & Revocation -->
+                        <string>ocsp.apple.com</string>
+                        <string>crl.apple.com</string>
+                        <string>cert.apple.com</string>
+                        <string>configuration.apple.com</string>
+                        <string>validate.apple.com</string>
+                        <string>deviceupdate.apple.com</string>
+                        <string>updates-http.cdn-apple.com</string>
+                        <string>appstore.apple.com</string>
+                        <string>itunes.apple.com</string>
+                        <string>geo.apple.com</string>
+                        <string>apps.apple.com</string>
+                        <string>content.apple.com</string>
+                        <string>api.apple.com</string>
+                        <string>secure.apple.com</string>
+                        <string>radar.apple.com</string>
+                        <string>testflight.apple.com</string>
+                        <string>sandbox.apple.com</string>
+
+                        <!-- Block Apple Analytics, Telemetry, and Marketing -->
+                        <string>metrics.apple.com</string>
+                        <string>analytics.apple.com</string>
+                        <string>ad.apple.com</string>
+                        <string>aod.apple.com</string>
+                        <string>apple-ads.org</string>
+                        <string>applemediaservices.apple.com</string>
+                        <string>prod.applemediaservices.com</string>
+                        <string>dpm.apple.com</string>
+                        <string>mds.apple.com</string>
+                        <string>cs.apple.com</string>
+
+                        <!-- Block Other Apple Revocation and App-Related Domains -->
+                        <string>appstoreconnect.apple.com</string>
+                        <string>cdn.apple.com</string>
+                        <string>apps.apple.com</string>
+                        <string>app-measurement.com</string>
+                        <string>subsys.apple.com</string>
+                        <string>sbx.apple.com</string>
+
+                        <!-- Block general Apple DNS and telemetry -->
+                        <string>p54-caldav.icloud.com</string>
+                        <string>p53-caldav.icloud.com</string>
+                        <string>ubiquity.apple.com</string>
+                        <string>ns.apple.com</string>
+                        <string>clouddrive.apple.com</string>
+                        <string>iadsdk.apple.com</string>
+                    </array>
+                </dict>
+                <key>PayloadDescription</key>
+                <string>Block Apple-related domains and certificate revocation checks</string>
+                <key>PayloadDisplayName</key>
+                <string>Anti-Revocation + Block Apple Ads</string>
+                <key>PayloadIdentifier</key>
+                <string>com.example.anti-revoke-block-apple</string>
+                <key>PayloadUUID</key>
+                <string>354645563-6719-5827-1779-2147483647</string>
+                <key>PayloadVersion</key>
+                <integer>1</integer>
+            </dict>
+
+            <!-- User-Agent Modification Profile -->
+            <dict>
+                <key>PayloadType</key>
+                <string>com.apple.userAgentSettings</string>
+                <key>PayloadIdentifier</key>
+                <string>com.example.fakePCmode.userAgent</string>
+                <key>PayloadDisplayName</key>
+                <string>Safari User-Agent Modification</string>
+                <key>PayloadDescription</key>
+                <string>Modify Safari's user-agent to always appear as a desktop browser (PC).</string>
+                <key>PayloadVersion</key>
+                <integer>1</integer>
+                <key>PayloadUUID</key>
+                <string>ed243b77-f083-44a7-8dff-9ba0a14a0f1e</string>
+                <key>PayloadContent</key>
+                <dict>
+                    <key>UserAgent</key>
+                    <string>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36</string>
+                </dict>
+            </dict>
+        </array>
+
+        <!-- General Payload Information -->
+        <key>PayloadDescription</key>
+        <string>Profile to modify Safari's user-agent and block Apple services, certificate checks, and ads.</string>
+        <key>PayloadDisplayName</key>
+        <string>Anti-Revocation + Fake PC Mode</string>
+        <key>PayloadIdentifier</key>
+        <string>com.example.fakePCmode.config</string>
+        <key>PayloadRemovalDisallowed</key>
+        <false/>
+        <key>PayloadScope</key>
+        <string>System</string>
+        <key>PayloadUUID</key>
+        <string>354645563-6719-5827-1779-2147483647</string>
+        <key>PayloadVersion</key>
+        <integer>1</integer>
+    </dict>
+</plist>
